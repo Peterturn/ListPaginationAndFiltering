@@ -25,7 +25,7 @@ const studentItems = document.querySelectorAll('li.student-item');
 const numOfBtnLinks = Math.ceil(studentItems.length/10);
 //console.log (numOfBtnLinks);
 const div = document.querySelector('div.page');
-
+const mainBody = document.querySelector('body');
 
 
 //function to controll how many students are listed at the opening of the page.
@@ -48,18 +48,20 @@ showPage(studentItems);
 
 
 function appendPageLinks (){
+  const divpagination = document.createElement("div");
+  divpagination.className = 'pagination';
+  mainBody.appendChild(divpagination);
   const ul = document.createElement("ul");
-  div.appendChild(ul);
+  divpagination.appendChild(ul);
 
-  for (let i = 0; i <= numOfBtnLinks ; i++){
+  for (let i = 1; i <= numOfBtnLinks ; i++){
     const li = document.createElement("li");
+    li.className = 'pagination';
     const anchor = document.createElement("a");
-    anchor.class = 'active';
-    li.innerHTML = parseInt([i])+1;
+    anchor.className = 'pagination';
+    anchor.textContent = [i];
     ul.appendChild(li);
     li.appendChild(anchor);
-
-
 }
 }
 appendPageLinks ();
