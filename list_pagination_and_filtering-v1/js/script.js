@@ -31,16 +31,16 @@ const mainBody = document.querySelector('body');
 //function to controll how many students are listed at the opening of the page.
 
 function showPage(num){
-  for (let i = 0; i < studentItems.length; i += 1) {
+  for (let i = num-1; i < studentItems.length; i += 1) {
     let li = studentItems[i];
       if (i <= 9){
       li.style.display = li;
-     }else {
+    }else if(){
       li.style.display = 'none';
       }
     }
 }
-
+showPage(1)
 
 /***
    Create the `appendPageLinks function` to generate, append, and add
