@@ -60,8 +60,10 @@ anchorDiv.addEventListener('click', (e) => {
   const anchorNumber =  parseInt(anchorElement);
 
   for (let i = 0; i < studentItems.length; i += 1) {
+    const maxNum = (anchorNumber*10)-1;
+    const lowNum = (maxNum-9);
     let li = studentItems[i];
-      if (i <= 9){
+      if ( i >= lowNum && i<=maxNum){
       li.style.display = '';
     }else{
       li.style.display = 'none';
