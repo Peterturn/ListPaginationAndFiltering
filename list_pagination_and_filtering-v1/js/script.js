@@ -30,7 +30,7 @@ const mainBody = document.querySelector('body');
 
 //function to controll how many students are listed at the opening of the page.
 
-function showPage(text){
+function showPage(num){
   for (let i = 0; i < studentItems.length; i += 1) {
     let li = studentItems[i];
       if (i <= 9){
@@ -40,13 +40,12 @@ function showPage(text){
       }
     }
 }
-showPage(studentItems);
+
 
 /***
    Create the `appendPageLinks function` to generate, append, and add
    functionality to the pagination buttons.
 ***/
-
 
 function appendPageLinks (){
   const divpagination = document.createElement("div");
@@ -69,18 +68,19 @@ appendPageLinks ();
 
 //Dynamic pagination buttons allowing users to see the next group of students
 const anchorDiv = document.querySelector('div.pagination');
+
 anchorDiv.addEventListener('click', (e) => {
   const anchorElement = e.target.textContent;
-const anchorNumber =  parseInt(anchorElement);
-alert(anchorNumber);
+  const anchorNumber =  parseInt(anchorElement);
+  showPage(anchorNumber)
 });
-//   for (let i = 0; i < studentItems.length; i += 1) {
-//     let li = studentItems[i];
-//       if (i <= anchorElement){
-//       li.style.display = li;
-//      }else {
-//       li.style.display = 'none';
-//       }
-//     }
 
+// for (let i = anchorNumber-1; i < studentItems.length; i += 1) {
+//   let li = studentItems[i];
+//   if (i <= i+9){
+//   li.style.display = li;
+//  }else {
+//   li.style.display = 'none';
+//   }
+// }
 // // Remember to delete the comments that came with this file, and replace them with your own code comments.
