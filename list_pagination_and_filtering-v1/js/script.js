@@ -19,18 +19,14 @@ const mainBody = document.querySelector('body');
 
 
 //function to controll how many students are listed at the opening of the page.
-
-function showPage(num){
   for (let i = 0; i < studentItems.length; i += 1) {
     let li = studentItems[i];
-      if (i <= (num-1)*10+9){
-      li.style.display = '';
-    }else if(i <= 9){
-      li.style.display = '';
+        if (i <= 9){
+        li.style.display = '';
+      }else{
+        li.style.display = 'none';
+        }
       }
-    }
-}
-showPage(1);
 
 /***
    Create the `appendPageLinks function` to generate, append, and add
@@ -52,7 +48,7 @@ function appendPageLinks (){
     anchor.textContent = [i];
     ul.appendChild(li);
     li.appendChild(anchor);
-}
+  }
 }
 appendPageLinks ();
 
@@ -62,5 +58,14 @@ const anchorDiv = document.querySelector('div.pagination');
 anchorDiv.addEventListener('click', (e) => {
   const anchorElement = e.target.textContent;
   const anchorNumber =  parseInt(anchorElement);
-  showPage(anchorNumber);
+
+  for (let i = 0; i < studentItems.length; i += 1) {
+    let li = studentItems[i];
+      if (i <= 9){
+      li.style.display = '';
+    }else{
+      li.style.display = 'none';
+      }
+    }
+
 });
