@@ -26,16 +26,17 @@ const numOfBtnLinks = Math.ceil(studentItems.length/10);
 //console.log (numOfBtnLinks);
 const div = document.querySelector('div.page');
 const mainBody = document.querySelector('body');
-
+const anchorDiv = document.querySelector('div.pagination');
 
 //function to controll how many students are listed at the opening of the page.
+
 function showPage(text){
   for (let i = 0; i < studentItems.length; i += 1) {
     let li = studentItems[i];
-      if (i >= 9){
-      li.style.display = 'none';
-     }else {
+      if (i <= 9){
       li.style.display = li;
+     }else {
+      li.style.display = 'none';
       }
     }
 }
@@ -66,5 +67,17 @@ function appendPageLinks (){
 }
 appendPageLinks ();
 
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+//Dynamic pagination buttons allowing users to see the next group of students
+anchorDiv.addEventListener('click', (e) => {
+  const anchorElement = e.target.textContent;
+alert(anchorElement)
+//   for (let i = 0; i < studentItems.length; i += 1) {
+//     let li = studentItems[i];
+//       if (i <= anchorElement){
+//       li.style.display = li;
+//      }else {
+//       li.style.display = 'none';
+//       }
+//     }
+});
+// // Remember to delete the comments that came with this file, and replace them with your own code comments.
