@@ -26,7 +26,7 @@ const numOfBtnLinks = Math.ceil(studentItems.length/10);
 //console.log (numOfBtnLinks);
 const div = document.querySelector('div.page');
 const mainBody = document.querySelector('body');
-const anchorDiv = document.querySelector('div.pagination');
+
 
 //function to controll how many students are listed at the opening of the page.
 
@@ -70,7 +70,8 @@ appendPageLinks ();
 //Dynamic pagination buttons allowing users to see the next group of students
 anchorDiv.addEventListener('click', (e) => {
   const anchorElement = e.target.textContent;
-alert(anchorElement)
+
+alert(anchorElement);
 //   for (let i = 0; i < studentItems.length; i += 1) {
 //     let li = studentItems[i];
 //       if (i <= anchorElement){
