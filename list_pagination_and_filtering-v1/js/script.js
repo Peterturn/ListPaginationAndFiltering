@@ -13,9 +13,7 @@ FSJS project 2 - List Filter and Pagination
 const studentItems = document.querySelectorAll('li.student-item');
 //a const used to create groups of 10 students or less.
 const numOfBtnLinks = Math.ceil(studentItems.length/10);
-//console.log (numOfBtnLinks);
 const div = document.querySelector('div.page');
-const mainBody = document.querySelector('body');
 
 
 //function to controll how many students are listed at the opening of the page.
@@ -29,16 +27,15 @@ const mainBody = document.querySelector('body');
       }
 
 /***
-   Create the `appendPageLinks function` to generate, append, and add
+   Creates the `appendPageLinks function` to generate, append, and add
    functionality to the pagination buttons.
 ***/
 
 function appendPageLinks (){
-  const divpagination = document.createElement("div");
-  divpagination.className = 'pagination';
-  mainBody.appendChild(divpagination);
-  const ul = document.createElement("ul");
-  divpagination.appendChild(ul);
+  const ulPagination = document.createElement("ul");
+  ulPagination.className = 'pagination';
+  div.appendChild(ulPagination);
+
 
   for (let i = 1; i <= numOfBtnLinks ; i++){
     const li = document.createElement("li");
@@ -46,28 +43,38 @@ function appendPageLinks (){
     const anchor = document.createElement("a");
     anchor.className = 'pagination';
     anchor.textContent = [i];
-    ul.appendChild(li);
+    ulPagination.appendChild(li);
     li.appendChild(anchor);
-  }
+    if(i === 1){
+      anchor.className = "active";
+      }
+    }
 }
 appendPageLinks ();
 
-//Dynamic pagination buttons allowing users to see the next group of students
-const anchorDiv = document.querySelector('div.pagination');
-
-anchorDiv.addEventListener('click', (e) => {
+/***
+EventListener allowing the Dynamic pagination buttons to helping users to see the next group of students while also changing the status of the current button to 'active'.
+***/
+const anchorUl = document.querySelector('ul.pagination');
+anchorUl.addEventListener('click', (e) => {
   const anchorElement = e.target.textContent;
   const anchorNumber =  parseInt(anchorElement);
+  const  pageBtn = document.getElementsByTagName('a');
 
-  for (let i = 0; i < studentItems.length; i += 1) {
-    const maxNum = (anchorNumber*10)-1;
-    const lowNum = (maxNum-9);
-    let li = studentItems[i];
-      if ( i >= lowNum && i<=maxNum){
-      li.style.display = '';
-    }else{
-      li.style.display = 'none';
+//displays the next group of students depending on button clicked.
+    for (let i = 0; i < studentItems.length; i += 1) {
+      const maxNum = (anchorNumber*10)-1;
+      const lowNum = (maxNum-9);
+      let li = studentItems[i];
+        if ( i >= lowNum && i<=maxNum){
+        li.style.display = '';
+        }else{
+        li.style.display = 'none';
+        }
       }
-    }
-
+//loop for changing the status of the buttons to 'active'.
+    for(let j = 0; j < pageBtn.length; j += 1) {
+                      pageBtn[j].className = "";
+                    }
+      e.target.className = 'active';
 });
